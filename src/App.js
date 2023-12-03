@@ -1,0 +1,36 @@
+import React from "react";
+import "./Assets/Css/Utilities.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-loading";
+import UseAuth from "./Middleware/UseAuth";
+import Login from "./Pages/Auth/Login";
+import Chat from "./Pages/Chat";
+import SearchFriends from "./Pages/SearchFriends";
+import Setting from "./Pages/Setting";
+import UserInfo from "./Pages/UserInfo";
+import Register1 from "./Pages/Auth/Register1";
+import Register2 from "./Pages/Auth/Register2";
+import Register3 from "./Pages/Auth/Register3";
+import NotFound from "./Pages/NotFound";
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route element={<UseAuth />}>
+          <Route path="/" element={<Chat />} loading />
+          <Route path="/friends" element={<SearchFriends />} loading />
+          <Route path="/setting" element={<Setting />} loading />
+          <Route path="/user/:username" element={<UserInfo />} loading />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register1 />} />
+        <Route path="/register/2" element={<Register2 />} />
+        <Route path="/register/3" element={<Register3 />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
